@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../buildMultiTargeting/Audiophile-e-commerce-API.props" />
+</Project>
