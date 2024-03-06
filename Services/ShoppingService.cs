@@ -1,13 +1,14 @@
 using Audiophile_e_commerce_API.Models;
 using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Audiophile_e_commerce_API.Services;
 
-public class UserService(EcommerceContext dbcontext) : IUserService {
+public class ShoppingSessionService(EcommerceContext dbcontext) : IShoppingSessionService {
     readonly EcommerceContext context = dbcontext;
 
-    public IEnumerable<User> GetUsers() {
-        return context.Users;
+    public IEnumerable<ShoppingSession> GetSession() {
+        return context.ShoppingSession;
     }
 
     public async Task Save(User user) {
@@ -44,7 +45,7 @@ public class UserService(EcommerceContext dbcontext) : IUserService {
     }
 }
 
-public interface IUserService {
+public interface IShoppingSessionService {
     IEnumerable<User> GetUsers();
     Task Save(User user);
     Task Update(Guid id, User user);

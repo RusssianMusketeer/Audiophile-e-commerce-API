@@ -1,4 +1,3 @@
-using System.Data.Common;
 using Audiophile_e_commerce_API.Models;
 using Audiophile_e_commerce_API.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -7,17 +6,11 @@ namespace Audiophile_e_commerce_API.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class UserController : ControllerBase
+public class UserController(IUserService service, EcommerceContext db) : ControllerBase
 {
 
-    IUserService userService;
-    EcommerceContext dbcontext;
-
-    public UserController( IUserService service, EcommerceContext db)
-    {
-        userService = service;
-        dbcontext = db;
-    }
+    readonly IUserService userService = service;
+    readonly EcommerceContext dbcontext = db;
 
     [HttpGet(Name = "GetUser")]
     [Route("[action]")]
@@ -25,6 +18,31 @@ public class UserController : ControllerBase
     {
         return Ok(userService.GetUsers());
     }
+
+    [HttpPost(Name = "PostUser")]
+    [Route("[action]")]
+    public IActionResult PostUser([FromBody] User user)
+    {
+        userService.Save(user);
+        return Ok();
+    }
+
+
+    [HttpPut("{id}", Name ="ModifyUser")]
+    [Route("[action]")]
+    public IActionResult ModifyUser(Guid id, [FromBody] User user)
+    {
+        userService.Update(id, user);
+        return Ok();
+    }
+
+    [HttpDelete("{id}", Name ="DeleteUser")]
+    [Route("[action]")]
+    public IActionResult DeleteUser(Guid id)
+    {
+        userService.Delete(id);
+        return Ok();
+    }   
 
     [HttpGet(Name = "CreateDb")]
     [Route("createdb")]

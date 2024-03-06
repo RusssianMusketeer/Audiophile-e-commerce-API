@@ -70,3 +70,4 @@
 /Users/arseni/Developer/Audiophile-e-commerce-API/obj/Debug/net8.0/Audiophile-e-commerce-API.pdb
 /Users/arseni/Developer/Audiophile-e-commerce-API/obj/Debug/net8.0/Audiophile-e-commerce-API.genruntimeconfig.cache
 /Users/arseni/Developer/Audiophile-e-commerce-API/obj/Debug/net8.0/ref/Audiophile-e-commerce-API.dll
+/Users/arseni/Developer/Audiophile-e-commerce-API/obj/Debug/net8.0/Audiophile-e-commerce-API.sourcelink.json
