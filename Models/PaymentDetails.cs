@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
 namespace Audiophile_e_commerce_API.Models;
 
 public class PaymentDetails {
@@ -8,6 +11,20 @@ public class PaymentDetails {
     public DateTime CreatedAt {get;set;}
     public virtual OrderDetails OrderDetails {get;set;}
 
+}
+
+public class PaymentDetailsConfiguration : IEntityTypeConfiguration<PaymentDetails>
+{   
+    public void Configure(EntityTypeBuilder<PaymentDetails> builder)
+    {   
+            builder.ToTable("PaymentDetails");
+            builder.HasKey(p => p.PaymentDetailsId);
+            builder.Property(p => p.Amount).IsRequired();
+            builder.Property(p => p.Status).IsRequired();
+            builder.Property(p => p.Payment).IsRequired();
+            builder.Property(p => p.CreatedAt).IsRequired();
+        
+    }
 }
 
 public enum StatusPayment {
